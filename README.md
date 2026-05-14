@@ -24,7 +24,6 @@ Model aşağıdaki intent sınıflarını tahmin eder:
 - Joblib
 - TF-IDF
 - LinearSVC
-- CalibratedClassifierCV
 
 
 ## Model Eğitimi
@@ -35,10 +34,10 @@ Eğitim sırasında:
 
 - Veri seti okunur.
 - Sınıf dağılımı görüntülenir.
-- Veri sınıf bazında yumuşak şekilde dengelenir.
-- TF-IDF ile metinler sayısallaştırılır.
-- LinearSVC tabanlı model eğitilir.
-- Accuracy, classification report ve confusion matrix üretilir.
+- Tüm temiz veri eğitim akışında kullanılır.
+- Word ve character n-gram TF-IDF ile metinler sayısallaştırılır.
+- Az örnekli sınıflara ek ağırlık veren LinearSVC tabanlı model eğitilir.
+- Accuracy, balanced accuracy, macro F1, classification report ve confusion matrix üretilir.
 - Model dosyaları `models/` klasörüne kaydedilir.
 - Rapor görselleri `reports/` klasörüne kaydedilir.
 
@@ -71,10 +70,13 @@ Tahmin: tedavi
 
 ## Performans
 
-Son eğitimde model yaklaşık olarak şu accuracy değerini üretmiştir:
+Son eğitimde model yaklaşık olarak şu değerleri üretmiştir:
 
 ```text
-Accuracy: 0.43
+Accuracy: 0.6603
+Balanced accuracy: 0.4401
+Macro F1: 0.4272
+Weighted F1: 0.6587
 ```
 
 Model performansı veri setinin dengesi, sınıf sayısı ve metinlerin benzerliğine göre değişebilir. Daha yüksek başarı için veri seti genişletilebilir, sınıf dengesi iyileştirilebilir veya farklı modeller denenebilir.

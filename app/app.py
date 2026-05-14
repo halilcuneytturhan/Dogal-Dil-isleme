@@ -6,7 +6,6 @@ from pathlib import Path
 
 st.set_page_config(
     page_title="House MD Intent Sınıflandırma",
-    page_icon="🩺",
     layout="centered"
 )
 
@@ -106,9 +105,7 @@ if predict_button:
             st.info(f"Güven skoru: **{confidence * 100:.2f}%**")
 
             if confidence < 0.40:
-                st.warning("Model bu tahminden çok emin değil.")
-        else:
-            st.info("Bu model güven skoru üretmemektedir.")
+                st.warning("tahminden pek emin değil.")
 
         st.divider()
 
@@ -132,7 +129,7 @@ st.sidebar.divider()
 
 st.sidebar.write(
     """
-    **Model:** TF-IDF + Calibrated SVM  
+    **Model:** Word/char TF-IDF + LinearSVC  
     **Veri:** Kendi oluşturduğumuz HouseMD Dataset
     """
 )
