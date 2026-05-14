@@ -4,10 +4,6 @@ import re
 from pathlib import Path
 
 
-# =========================
-# 1. Sayfa ayarları
-# =========================
-
 st.set_page_config(
     page_title="House MD Intent Sınıflandırma",
     page_icon="🩺",
@@ -15,30 +11,11 @@ st.set_page_config(
 )
 
 
-# =========================
-# 2. Dosya yolları
-# =========================
-# Bu dosya app klasörünün içinde olduğu için:
-# streamlit_app.py -> app klasöründe
-# models klasörü -> bir üst klasörde
-#
-# Yani:
-# Doğal Dil İşleme/
-# ├── app/
-# │   └── streamlit_app.py
-# ├── models/
-# │   ├── intent_model.pkl
-# │   └── tfidf_vectorizer.pkl
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 MODEL_PATH = BASE_DIR / "models" / "intent_model.pkl"
 VECTORIZER_PATH = BASE_DIR / "models" / "tfidf_vectorizer.pkl"
 
-
-# =========================
-# 3. Model ve TF-IDF yükleme
-# =========================
 
 @st.cache_resource
 def load_model():
@@ -50,37 +27,24 @@ def load_model():
 model, vectorizer = load_model()
 
 
-# =========================
-# 4. Metin temizleme fonksiyonu
-# =========================
-
 def clean_text(text):
     text = text.lower()
     text = text.strip()
 
-    # Fazla boşlukları tek boşluk yap
     text = re.sub(r"\s+", " ", text)
 
-    # Gereksiz özel karakterleri temizle
     text = re.sub(r"[^a-zA-ZğüşöçıİĞÜŞÖÇ0-9\s.,?!:;%-]", "", text)
 
     return text
 
 
-# =========================
-# 5. Tahmin fonksiyonu
-# =========================
-
 def predict_intent(text):
     cleaned_text = clean_text(text)
 
-    # Metni TF-IDF vektörüne çevir
     text_vector = vectorizer.transform([cleaned_text])
 
-    # Model tahmini
     prediction = model.predict(text_vector)[0]
 
-    # Güven skoru
     confidence = None
 
     if hasattr(model, "predict_proba"):
@@ -90,9 +54,6 @@ def predict_intent(text):
     return prediction, confidence, cleaned_text
 
 
-# =========================
-# 6. Arayüz başlığı
-# =========================
 st.title("🩺 HouseMD-Intent: Medikal Diyalog Niyeti Sınıflandırma Sistemi")
 
 st.markdown(
@@ -118,10 +79,6 @@ st.info(
 st.divider()
 
 
-# =========================
-# 7. Kullanıcıdan metin alma
-# =========================
-
 st.subheader("Analiz edilecek cümle giriniz")
 
 user_text = st.text_area(
@@ -132,10 +89,6 @@ user_text = st.text_area(
 
 predict_button = st.button("Analiz")
 
-
-# =========================
-# 8. Tahmin sonucu
-# =========================
 
 if predict_button:
     if user_text.strip() == "":
@@ -159,11 +112,6 @@ if predict_button:
 
         st.divider()
 
-
-
-# =========================
-# 9. Sidebar bilgileri
-# =========================
 
 st.sidebar.title("Intent Sınıfları")
 

@@ -14,29 +14,14 @@ from sklearn.svm import LinearSVC
 from sklearn.calibration import CalibratedClassifierCV
 
 
-# =========================
-# 1. Temizlenmiş dataseti oku
-# =========================
 
 data_path = "data/cleaned_intent_dataset.csv"
 df = pd.read_csv(data_path)
-
-
-# =========================
-# Yumuşak sınıf dengeleme
-# =========================
-
-
-
-
 
 print("Dataset boyutu:", df.shape)
 print("\nSınıf dağılımı:")
 print(df["label"].value_counts())
 
-# =========================
-# Yumuşak sınıf dengeleme
-# =========================
 
 max_per_class = 500
 
@@ -56,19 +41,10 @@ print("\nYumuşak dengelenmiş sınıf dağılımı:")
 print(df["label"].value_counts())
 
 
-# =========================
-# 2. Giriş ve hedef değişkenleri ayır
-# =========================
-
 X = df["text"]
 y = df["label"]
 
 
-# =========================
-# 3. Train-test ayrımı
-# =========================
-# train: modelin öğreneceği veri
-# test: modelin daha önce görmediği veri
 
 X_train, X_test, y_train, y_test = train_test_split(
     X,
@@ -82,9 +58,6 @@ print("\nEğitim veri sayısı:", X_train.shape[0])
 print("Test veri sayısı:", X_test.shape[0])
 
 
-# =========================
-# 4. TF-IDF ile metinleri sayısallaştır
-# =========================
 
 vectorizer = TfidfVectorizer(
     max_features=20000,
@@ -100,10 +73,6 @@ X_test_tfidf = vectorizer.transform(X_test)
 print("\nTF-IDF eğitim matris boyutu:", X_train_tfidf.shape)
 print("TF-IDF test matris boyutu:", X_test_tfidf.shape)
 
-
-# =========================
-# 5. Modeli oluştur ve eğit
-# =========================
 
 
 base_model = LinearSVC(
@@ -122,16 +91,7 @@ model.fit(X_train_tfidf, y_train)
 print("\nModel eğitimi tamamlandı.")
 
 
-# =========================
-# 6. Test verisi üzerinde tahmin yap
-# =========================
-
 y_pred = model.predict(X_test_tfidf)
-
-
-# =========================
-# 7. Model performansını ölç
-# =========================
 
 accuracy = accuracy_score(y_test, y_pred)
 
@@ -195,11 +155,6 @@ print("reports/confusion_matrix_normalized.png")
 print("reports/classification_report.csv")
 print("reports/model_metrics.txt")
 
-
-# =========================
-# 8. Model ve vectorizer dosyalarını kaydet
-# =========================
-
 os.makedirs("models", exist_ok=True)
 
 joblib.dump(model, "models/intent_model.pkl")
@@ -210,9 +165,6 @@ print("models/intent_model.pkl")
 print("models/tfidf_vectorizer.pkl")
 
 
-# =========================
-# 9. Basit test tahminleri
-# =========================
 
 sample_texts = [
     "Hastanın ateşi yükseliyor ve nefes almakta zorlanıyor.",

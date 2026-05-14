@@ -2,19 +2,17 @@ import pandas as pd
 import re
 import os
 
-# Veriyi sisteme yükledik ve test ettik.
 input_path = r"C:\Users\cavus\Desktop\Doğal Dil İşleme\data\Last_HouseMD_DataSet.xlsx"
 output_csv_path = "data/cleaned_intent_dataset.csv"
 output_excel_path = "data/cleaned_intent_dataset.xlsx"
 
 df = pd.read_excel(input_path)
 
-print("Orijinal Dataset boyutu = ", df.shape) # Dataset boyutu
+print("Orijinal Dataset boyutu = ", df.shape)
 print("Sütunlar = ", df.columns.to_list())
 
 df = df[["text", "Intent"]].copy()
 
-# Veri Temizleme
 df.rename(columns={"Intent": "label"}, inplace=True)
 
 df.dropna(subset=["text","label"], inplace=True)

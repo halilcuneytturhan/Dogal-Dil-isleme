@@ -1,11 +1,6 @@
 import pandas as pd
 import os
 
-
-# =========================
-# 1. Temizlenmiş dataset dosyasını oku
-# =========================
-
 input_path = "data/cleaned_intent_dataset.csv"
 output_csv_path = "data/balanced_intent_dataset.csv"
 output_excel_path = "data/balanced_intent_dataset.xlsx"
@@ -18,18 +13,9 @@ print("\nOrijinal sınıf dağılımı:")
 print(df["label"].value_counts())
 
 
-# =========================
-# 2. En az veriye sahip sınıfı bul
-# =========================
-
 min_class_count = df["label"].value_counts().min()
 
 print("\nEn az veriye sahip sınıftaki veri sayısı:", min_class_count)
-
-
-# =========================
-# 3. Her sınıftan eşit sayıda veri al
-# =========================
 
 balanced_df = (
     df.groupby("label", group_keys=False)
@@ -37,16 +23,7 @@ balanced_df = (
 )
 
 
-# =========================
-# 4. Veriyi karıştır
-# =========================
-
 balanced_df = balanced_df.sample(frac=1, random_state=42).reset_index(drop=True)
-
-
-# =========================
-# 5. Sonuçları göster
-# =========================
 
 print("\nDengelenmiş dataset boyutu:", balanced_df.shape)
 
@@ -55,11 +32,6 @@ print(balanced_df["label"].value_counts())
 
 print("\nİlk 10 satır:")
 print(balanced_df.head(10))
-
-
-# =========================
-# 6. Dengelenmiş dataseti kaydet
-# =========================
 
 os.makedirs("data", exist_ok=True)
 
