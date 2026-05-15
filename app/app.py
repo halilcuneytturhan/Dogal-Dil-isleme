@@ -114,14 +114,21 @@ st.sidebar.title("Intent Sınıfları")
 
 st.sidebar.write(
     """
-    - **Açıklama** 
-    - **Hipotez** 
-    - **Soru** 
-    - **Talimat** 
-    - **Tanı** 
-    - **Tedavi** 
-    - **Değerlendirme**  
-    - **Test / Prosedür** 
+    - **Açıklama =** Genel durum bilgilendirmesi. 
+    
+    - **Hipotez =** Olası tanılar ve varsayımlar. 
+    
+    - **Soru =** Tıbbi sorgulama ve aramalar. 
+    
+    - **Talimat =** Hekim emirleri ve yönlendirmeler. 
+    
+    - **Tanı =** Netleşmiş tıbbi teşhisler. 
+    
+    - **Tedavi =** İlaç (antibiyotik vb.) ve operasyon planları. 
+    
+    - **Değerlendirme =** Test sonuçlarının yorumlanması.  
+    
+    - **Test / Prosedür =** Tetkik ve görüntüleme (MR, kan testi) istemleri. 
     """
 )
 
