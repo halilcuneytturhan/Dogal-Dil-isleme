@@ -53,23 +53,13 @@ def predict_intent(text):
     return prediction, confidence, cleaned_text
 
 
-st.title("🩺 HouseMD-Intent: Medikal Diyalog Niyeti Sınıflandırma Sistemi")
+st.title("HouseMD-Intent: Medikal Diyalog Niyeti Sınıflandırma Sistemi")
 
 st.markdown(
     """
     **HouseMD-Intent**, House MD veri seti kullanılarak geliştirilen bir doğal dil işleme
     uygulamasıdır. Bu sistem, kullanıcı tarafından girilen medikal içerikli bir diyaloğu
     analiz ederek cümlenin hangi konuşma niyetine ait olduğunu tahmin eder.
-
-    Model, girilen metni önce **TF-IDF** yöntemiyle sayısal forma dönüştürür ve ardından
-    eğitilmiş sınıflandırma modeli ile intent tahmini yapar.
-    """
-)
-
-st.info(
-    """
-    Bu uygulama; açıklama, hipotez, soru, talimat, tanı, tedavi, değerlendirme ve
-    test/prosedür sınıfları arasında tahmin yapmaktadır.
     """
 )
 
