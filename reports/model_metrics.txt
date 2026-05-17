@@ -4,18 +4,18 @@ C: 0.2
 Vectorizer: word TF-IDF + char_wb TF-IDF
 Rare class max train samples: 250
 Rare class weight multiplier: 2.0
-Rare classes: tanı, soru, talimat, tedavi, değerlendirme, test/prosedür
+Rare classes: tanı, talimat, tedavi, değerlendirme, test/prosedür
 
 Holdout metrics
-Accuracy: 0.6603
-Balanced accuracy: 0.4401
-Macro F1: 0.4272
-Weighted F1: 0.6587
-Train samples: 4576
-Test samples: 1145
+Accuracy: 0.6471
+Balanced accuracy: 0.4044
+Macro F1: 0.3918
+Weighted F1: 0.6408
+Train samples: 4636
+Test samples: 1159
 
 Cross-validation metrics
-accuracy: 0.6407 +/- 0.0173
-balanced_accuracy: 0.3738 +/- 0.0325
-macro_f1: 0.3619 +/- 0.0274
-weighted_f1: 0.6341 +/- 0.0161
+accuracy: 0.6514 +/- 0.0104
+balanced_accuracy: 0.3991 +/- 0.0209
+macro_f1: 0.3929 +/- 0.0203
+weighted_f1: 0.6452 +/- 0.0079

@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 st.set_page_config(
-    page_title="House MD Intent Sınıflandırma",
+    page_title="House MD Duygu Analizi Sınıflandırma",
     layout="centered"
 )
 
